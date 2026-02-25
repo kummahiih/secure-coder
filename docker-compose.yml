@@ -9,6 +9,7 @@ services:
     environment:
       - HOME=/tmp
       - LITELLM_NON_ROOT=true
+      - LITELLM_MASTER_KEY=${DYNAMIC_AGENT_KEY}
     volumes:
       # Mount the config directly into /tmp
       - ./proxy_config.yaml:/tmp/config.yaml:ro
@@ -27,6 +28,7 @@ services:
     environment:
       # We told Aider its home is /tmp...
       - HOME=/tmp
+      - OPENAI_API_KEY=${DYNAMIC_AGENT_KEY}
     volumes:
       - ./src:/app/src:rw
       # ...so we mount the config file directly into its new home!

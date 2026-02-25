@@ -1,6 +1,5 @@
 # Force the agent to use the proxy URL instead of reaching out to the internet
 openai-api-base: http://proxy:4000
-openai-api-key: sk-dummy-key-for-agent
 
 # Set default model (matches a 'model_name' from proxy_config.yaml)
 model: openai/gemini-flash

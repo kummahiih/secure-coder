@@ -18,6 +18,9 @@ if [ -z "$GEMINI_API_KEY" ]; then
     exit 1
 fi
 
+# Generate a random, ephemeral API key for this session
+export DYNAMIC_AGENT_KEY="sk-$(openssl rand -hex 16)"
+
 # Grab the host's User ID and Group ID dynamically
 export HOST_UID=$(id -u)
 export HOST_GID=$(id -g)
