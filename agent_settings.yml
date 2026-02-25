@@ -3,13 +3,20 @@ openai-api-base: http://proxy:4000
 openai-api-key: sk-dummy-key-for-agent
 
 # Set default model (matches a 'model_name' from proxy_config.yaml)
-model: openai/claude-3-5-sonnet
+model: openai/gemini-flash
 
-# Strictly disable Git interactions
-no-git: true
+# Silence the Git prompt (Base name + false)
+git: false
 
-# Point to the read-only prompts file
-message-instructions: /app/prompts.md
-
+# Silence the interactive warnings and update notes
+show-model-warnings: false
+show-release-notes: false
 # Prevent Aider from trying to auto-update itself inside the container
 check-update: false
+
+# Auto-accept all file creation, deletion, and context prompts
+yes-always: true
+
+# Add prompts.md as a persistent read-only file in the chat context
+read: /app/prompts.md
+

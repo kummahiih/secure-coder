@@ -17,8 +17,15 @@ if [ -z "$GEMINI_API_KEY" ]; then
     echo "Error: GEMINI_API_KEY is not set."
     exit 1
 fi
+
+docker-compose down
+
 # Start the proxy in the background
 docker-compose up -d proxy
 
 # Run the agent interactively
 docker-compose run --rm agent
+
+# 3. Automatically tear down the proxy once you exit Aider
+docker-compose down
+
