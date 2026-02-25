@@ -1,4 +1,9 @@
 model_list:
+  # expose an gemini model
+  - model_name: gemini-flash
+    litellm_params:
+      model: gemini/gemini-1.5-flash
+      api_key: os.environ/GEMINI_API_KEY
   # Expose an OpenAI model
   - model_name: gpt-4o
     litellm_params:
