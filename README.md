@@ -17,6 +17,9 @@ This project is built around strict security boundaries to prevent prompt inject
 4. **Ephemeral Execution:** The environment is designed to be spun up and torn down instantly. Exiting the agent automatically kills the proxy, ensuring no secrets linger in memory.
 5.  **Zero Root Access:** containers runs as non root user.
 
+
+The secrests will be stored in local .secrets.env -file. No password vault implemented.
+
 ## ⚙️ Prerequisites
 
 * Docker Engine
@@ -29,6 +32,9 @@ This project is built around strict security boundaries to prevent prompt inject
 git clone <your-repo-url> secure-coder
 cd secure-coder
 mkdir src
+cp .secrets.env.example .secrets.env
+nano .secrets.env
+./run.sh
 
 ```
 
