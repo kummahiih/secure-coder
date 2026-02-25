@@ -24,6 +24,7 @@ The secrests will be stored in local .secrets.env -file. No password vault imple
 
 * Docker Engine
 * Docker Compose V2 (using the `docker-compose` command)
+* openssl (used for temporary api key generation)
 
 ## 🚀 Quick Start
 
