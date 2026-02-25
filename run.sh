@@ -9,7 +9,7 @@ if [ -z "$ANTHROPIC_API_KEY" ]; then
 fi
 
 if [ -z "$OPENAI_API_KEY" ]; then
-    echo "Error: OPENAI_API_KEY is not set." # <-- Fixed the variable name here
+    echo "Error: OPENAI_API_KEY is not set."
     exit 1
 fi
 
