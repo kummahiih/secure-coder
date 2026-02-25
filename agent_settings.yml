@@ -18,5 +18,5 @@ check-update: false
 yes-always: true
 
 # Add prompts.md as a persistent read-only file in the chat context
-read: /app/prompts.md
+read: /tmp/prompts.md
 

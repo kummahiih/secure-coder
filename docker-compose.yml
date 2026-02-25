@@ -1,11 +1,19 @@
 services:
   proxy:
     image: ghcr.io/berriai/litellm:main-latest
+    user: "${HOST_UID}:${HOST_GID}"
+    cap_drop:
+      - ALL
     env_file:
       - .secrets.env
+    environment:
+      - HOME=/tmp
+      - LITELLM_NON_ROOT=true
     volumes:
-      - ./proxy_config.yaml:/app/config.yaml:ro
-    command: ["--config", "/app/config.yaml"]
+      # Mount the config directly into /tmp
+      - ./proxy_config.yaml:/tmp/config.yaml:ro
+    # Tell LiteLLM to read the config from the new /tmp location
+    command: ["--config", "/tmp/config.yaml"]
     networks:
       - agent_net
 
@@ -13,10 +21,17 @@ services:
     image: paulgauthier/aider-full
     depends_on:
       - proxy
+    user: "${HOST_UID}:${HOST_GID}"
+    cap_drop:
+      - ALL
+    environment:
+      # We told Aider its home is /tmp...
+      - HOME=/tmp
     volumes:
       - ./src:/app/src:rw
-      - ./agent_settings.yml:/app/.aider.conf.yml:ro
-      - ./prompts.md:/app/prompts.md:ro
+      # ...so we mount the config file directly into its new home!
+      - ./agent_settings.yml:/tmp/.aider.conf.yml:ro
+      - ./prompts.md:/tmp/prompts.md:ro
     working_dir: /app/src
     networks:
       - agent_net

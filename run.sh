@@ -18,6 +18,10 @@ if [ -z "$GEMINI_API_KEY" ]; then
     exit 1
 fi
 
+# Grab the host's User ID and Group ID dynamically
+export HOST_UID=$(id -u)
+export HOST_GID=$(id -g)
+
 docker-compose down
 
 # Start the proxy in the background
