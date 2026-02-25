@@ -1,0 +1,15 @@
+# Force the agent to use the proxy URL instead of reaching out to the internet
+openai-api-base: http://proxy:4000
+openai-api-key: sk-dummy-key-for-agent
+
+# Set default model (matches a 'model_name' from proxy_config.yaml)
+model: openai/claude-3-5-sonnet
+
+# Strictly disable Git interactions
+no-git: true
+
+# Point to the read-only prompts file
+message-instructions: /app/prompts.md
+
+# Prevent Aider from trying to auto-update itself inside the container
+check-update: false

@@ -1,0 +1,15 @@
+model_list:
+  # Expose an OpenAI model
+  - model_name: gpt-4o
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: os.environ/OPENAI_API_KEY
+
+  # Expose an Anthropic model (LiteLLM automatically translates the API format)
+  - model_name: claude-3-5-sonnet
+    litellm_params:
+      model: anthropic/claude-3-5-sonnet
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+general_settings:
+  master_key: sk-dummy-key-for-agent # The agent will use this fake key to talk to the proxy
