@@ -10,6 +10,8 @@ services:
       - HOME=/tmp
       - LITELLM_NON_ROOT=true
       - LITELLM_MASTER_KEY=${DYNAMIC_AGENT_KEY}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       # Mount the config directly into /tmp
       - ./proxy_config.yaml:/tmp/config.yaml:ro
