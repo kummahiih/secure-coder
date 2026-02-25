@@ -18,6 +18,12 @@ if [ -z "$GEMINI_API_KEY" ]; then
     exit 1
 fi
 
+if [ -z "$OLLAMA_API_KEY" ]; then
+    echo "Error: OLLAMA_API_KEY is not set."
+    exit 1
+fi
+
+
 # Generate a random, ephemeral API key for this session
 export DYNAMIC_AGENT_KEY="sk-$(openssl rand -hex 16)"
 
