@@ -35,7 +35,44 @@ cd secure-coder
 mkdir src
 cp .secrets.env.example .secrets.env
 nano .secrets.env
-./run.sh
+$ ./run.sh 
+[+] Running 2/2
+ ✔ Network secure-coder_agent_net  Cre...                                  0.0s 
+ ✔ Container secure-coder-proxy-1  Sta...                                  0.3s 
+[+] Creating 1/1
+ ✔ Container secure-coder-proxy-1  Run...                                  0.0s 
+────────────────────────────────────────────────────────────────────────────────
+Aider v0.86.2
+Model: openai/qwen-coder with whole edit format
+Git repo: none
+Repo-map: disabled
+Added ../../tmp/prompts.md to the chat (read-only).
+────────────────────────────────────────────────────────────────────────────────
+Readonly: /tmp/prompts.md                                                       
+> make python hello world app                                                   
+
+app/src/hello.py                                                                                           
+
+                                                                                                           
+def main():                                                                                                
+                                                                                                           
+    print("Hello, World!")                                                                                 
+                                                                                                           
+                                                                                                           
+                                                                                                           
+if __name__ == "__main__":                                                                                 
+                                                                                                           
+    main()                                                                                                 
+                                                                                                           
+
+
+Tokens: 678 sent, 30 received.
+
+app/src/hello.py
+Applied edit to app/src/hello.py
+───────────────────────────────────────────────────────────────────────────────────────────────────────────
+Readonly: /tmp/prompts.md
+Editable: app/src/hello.py                      
 
 ```
 
