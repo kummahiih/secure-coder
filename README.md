@@ -13,9 +13,10 @@ This project is built around strict security boundaries to prevent prompt inject
    * **`src/` directory:** Mounted as Read/Write (`:rw`). The agent can only modify files here.
    * **`.git/` directory:** Intentionally excluded. The agent cannot read your commit history or alter your repository state.
    * **Configuration & Prompts:** Mounted as Read-Only (`:ro`). The agent can read its instructions but cannot overwrite its own behavioral guardrails.
-3. **Network Isolation:** The agent communicates exclusively over a dedicated internal Docker bridge network (`agent_net`). 
-4. **Ephemeral Execution:** The environment is designed to be spun up and torn down instantly. Exiting the agent automatically kills the proxy, ensuring no secrets linger in memory.
-5.  **Zero Root Access:** containers runs as non root user.
+3. **Network Isolation:** The agent communicates exclusively over a dedicated internal Docker bridge network (`agent_internal`). 
+4.  **Dual-network architecture:** is used for "air-gapping" the agent container while using the proxy as a controlled gateway.
+5. **Ephemeral Execution:** The environment is designed to be spun up and torn down instantly. Exiting the agent automatically kills the proxy, ensuring no secrets linger in memory.
+6.  **Zero Root Access:** containers runs as non root user.
 
 
 The secrests will be stored in local .secrets.env -file. No password vault implemented.

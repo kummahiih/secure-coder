@@ -10,6 +10,7 @@ services:
       - HOME=/tmp
       - LITELLM_NON_ROOT=true
       - LITELLM_MASTER_KEY=${DYNAMIC_AGENT_KEY}
+      - LITELLM_LOG=ERROR  # Reduces log noise to only critical errors
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
@@ -18,7 +19,8 @@ services:
     # Tell LiteLLM to read the config from the new /tmp location
     command: ["--config", "/tmp/config.yaml"]
     networks:
-      - agent_net
+      - internet_access  # To reach LLM providers
+      - agent_internal   # To reach the Aider agent
 
   agent:
     image: paulgauthier/aider-full
@@ -31,6 +33,7 @@ services:
       # We told Aider its home is /tmp...
       - HOME=/tmp
       - OPENAI_API_KEY=${DYNAMIC_AGENT_KEY}
+      - AIDER_ANALYTICS=false
     volumes:
       - ./src:/app/src:rw
       # ...so we mount the config file directly into its new home!
@@ -38,10 +41,13 @@ services:
       - ./prompts.md:/tmp/prompts.md:ro
     working_dir: /app/src
     networks:
-      - agent_net
-    stdin_open: true 
+      - agent_internal   # Restricted: No internet access    stdin_open: true 
     tty: true
 
 networks:
-  agent_net:
+  internet_access:
     driver: bridge
+  # This network is isolated; no gateway to the internet
+  agent_internal:
+    driver: bridge
+    internal: true
