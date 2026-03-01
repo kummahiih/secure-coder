@@ -41,7 +41,8 @@ services:
       - ./prompts.md:/tmp/prompts.md:ro
     working_dir: /app/src
     networks:
-      - agent_internal   # Restricted: No internet access    stdin_open: true 
+      - agent_internal   # Restricted: No internet access
+    stdin_open: true 
     tty: true
 
 networks:
