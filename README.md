@@ -36,6 +36,8 @@ cd secure-coder
 mkdir src
 cp .secrets.env.example .secrets.env
 nano .secrets.env
+mkdir -p src
+sudo mount --bind <your-project-folder-somewhere> src/
 $ ./run.sh 
 [+] Running 2/2
  ✔ Network secure-coder_agent_net  Cre...                                  0.0s 
