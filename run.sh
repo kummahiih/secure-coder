@@ -31,7 +31,13 @@ export DYNAMIC_AGENT_KEY="sk-$(openssl rand -hex 16)"
 export HOST_UID=$(id -u)
 export HOST_GID=$(id -g)
 
-docker-compose down
+# 7. Launch the stack
+echo "[$(date +'%H:%M:%S')] Tearing down old containers..."
+docker-compose down --rmi local --remove-orphans -v
+docker image prune -f
+
+echo "[$(date +'%H:%M:%S')] Building and Launching..."
+docker-compose build
 
 # Start the proxy in the background
 docker-compose up -d proxy

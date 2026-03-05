@@ -2,7 +2,8 @@
 openai-api-base: http://proxy:4000
 
 # Set default model (matches a 'model_name' from proxy_config.yaml)
-model: openai/qwen-coder
+# model: openai/qwen-coder
+model: openai/gemini-flash
 
 # Silence the Git prompt (Base name + false)
 git: false

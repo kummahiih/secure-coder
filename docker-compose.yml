@@ -18,6 +18,9 @@ services:
       - ./proxy_config.yaml:/tmp/config.yaml:ro
     # Tell LiteLLM to read the config from the new /tmp location
     command: ["--config", "/tmp/config.yaml"]
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     networks:
       - internet_access  # To reach LLM providers
       - agent_internal   # To reach the Aider agent
@@ -33,6 +36,7 @@ services:
       # We told Aider its home is /tmp...
       - HOME=/tmp
       - OPENAI_API_KEY=${DYNAMIC_AGENT_KEY}
+      - OPENAI_API_BASE=http://proxy:4000/v1
       - AIDER_ANALYTICS=false
     volumes:
       - ./src:/app/src:rw
